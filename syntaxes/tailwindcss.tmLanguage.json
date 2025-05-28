@@ -56,9 +56,31 @@
               "name": "parenthesis.custom.tailwindcss"
             }
           ]
+        },
+        "3": {
+          "patterns": [
+            { "include": "#css-variables" },
+            { "include": "#numbers" },
+            { "include": "#operators" },
+            { "include": "#commas" },
+            { "include": "#parenthesis" },
+            { "include": "#whitespace" },
+            { "include": "#quoted-string" },
+            { "include": "#css-functions" },
+            { "include": "#css-selectors" }
+          ]
+        },
+        "4": {
+          "name": "punctuation.section.function.end.bracket.round.css.tailwindcss",
+          "patterns": [
+            {
+              "match": "(.*)",
+              "name": "parenthesis.custom.tailwindcss"
+            }
+          ]
         }
       },
-      "match": "([\\w-]+)(\\()"
+      "match": "([\\w-]+)(\\()(.*)(\\))"
     },
     "css-selectors": {
       "captures": {

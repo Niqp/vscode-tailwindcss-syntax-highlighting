@@ -201,7 +201,7 @@ For custom styling you should always use the `*.custom.tailwindcss` scope.
         // css variables
         // [top:_var(--my-var)]
         //           ^^^^^^^^
-        "scope": "variable.custom.tailwindcss",
+        "scope": "css-variable.custom.tailwindcss",
         "settings": {
           "foreground": "#CA7979"
         }
