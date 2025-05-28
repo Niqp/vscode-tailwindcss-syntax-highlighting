@@ -37,11 +37,11 @@
     "vscode": "^1.74.0"
   },
   "devDependencies": {
-    "@schoero/configs": "^1.1.0",
-    "changelogen": "^0.5.5",
-    "cspell": "^8.14.2",
-    "eslint": "^9.9.1",
-    "markdownlint": "^0.34.0",
+    "@schoero/configs": "^1.4.2",
+    "changelogen": "^0.6.1",
+    "cspell": "^9.0.2",
+    "eslint": "^9.27.0",
+    "markdownlint": "^0.38.0",
     "vsce": "^2.15.0"
   },
   "keywords": [
