@@ -1,4 +1,13 @@
 
+## v0.3.0
+
+[compare changes](https://github.com/schoero/vscode-tailwindcss-syntax-highlighting/compare/v0.2.0...v0.3.0)
+
+### Features
+
+- Add svelte support ([5573550](https://github.com/schoero/vscode-tailwindcss-syntax-highlighting/commit/5573550
+))
+
 ## v0.2.0
 
 [compare changes](https://github.com/schoero/vscode-tailwindcss-syntax-highlighting/compare/v0.1.2...v0.2.0)
