@@ -55,6 +55,7 @@
     "jsx",
     "tsx",
     "html",
+    "svelte",
     "syntax",
     "highlighting"
   ],
@@ -67,18 +68,12 @@
   "contributes": {
     "grammars": [
       {
-        "embeddedLanguages": {
-          "meta.tag.html": "html",
-          "meta.tag.js": "js",
-          "meta.tag.jsx": "jsx",
-          "meta.tag.ts": "ts",
-          "meta.tag.tsx": "tsx"
-        },
         "injectTo": [
           "source.js",
           "source.jsx",
           "source.ts",
           "source.tsx",
+          "source.svelte",
           "text.html"
         ],
         "path": "./syntaxes/tailwindcss.tmLanguage.json",
