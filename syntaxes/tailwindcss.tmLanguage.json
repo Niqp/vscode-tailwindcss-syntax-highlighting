@@ -4,7 +4,9 @@
   "name": "tailwindcss syntax highlighting",
   "patterns": [
     { "include": "#singleline-class-attribute" },
-    { "include": "#multiline-class-attribute" }
+    { "include": "#multiline-class-attribute" },
+    { "include": "#cva-function-call" },
+    { "include": "#cn-function-call" }
   ],
   "repository": {
     "braces": {
@@ -477,6 +479,87 @@
         }
       },
       "match": "(_)"
+    },
+    "cva-function-call": {
+      "begin": "\\b(cva)\\s*(\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.tailwindcss"
+        },
+        "2": {
+          "name": "punctuation.section.function.begin.bracket.round.tailwindcss"
+        }
+      },
+      "end": "(\\))",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.section.function.end.bracket.round.tailwindcss"
+        }
+      },
+      "patterns": [
+        { "include": "#function-string-content" }
+      ]
+    },
+    "cn-function-call": {
+      "begin": "\\b(cn)\\s*(\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.tailwindcss"
+        },
+        "2": {
+          "name": "punctuation.section.function.begin.bracket.round.tailwindcss"
+        }
+      },
+      "end": "(\\))",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.section.function.end.bracket.round.tailwindcss"
+        }
+      },
+      "patterns": [
+        { "include": "#function-string-content" }
+      ]
+    },
+    "function-string-content": {
+      "patterns": [
+        {
+          "begin": "([\"'`])",
+          "beginCaptures": {
+            "1": {
+              "patterns": [
+                { "include": "#quotes" }
+              ]
+            }
+          },
+          "end": "(\\1)",
+          "endCaptures": {
+            "1": {
+              "patterns": [
+                { "include": "#quotes" }
+              ]
+            }
+          },
+          "patterns": [
+            {
+              "captures": {
+                "1": {
+                  "patterns": [
+                    { "include": "#tailwindcss-class-with-variants" }
+                  ]
+                }
+              },
+              "match": "([^\\s]+)"
+            }
+          ]
+        },
+        { "include": "#braces" },
+        { "include": "#commas" },
+        { "include": "#parenthesis" },
+        { "include": "source.js" },
+        { "include": "source.ts" },
+        { "include": "source.jsx" },
+        { "include": "source.tsx" }
+      ]
     }
   },
   "scopeName": "source.tailwindcss"
