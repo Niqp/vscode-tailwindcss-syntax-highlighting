@@ -5,6 +5,7 @@
   "patterns": [
     { "include": "#singleline-class-attribute" },
     { "include": "#multiline-class-attribute" },
+    { "include": "#template-literal-class-attribute" },
     { "include": "#cva-function-call" },
     { "include": "#cn-function-call" }
   ],
@@ -123,7 +124,7 @@
       "match": "([^\\s]+)"
     },
     "multiline-class-attribute": {
-      "begin": "\\s*\\b(class|className)\\b\\s*(=)\\s*({)?\\s*([\"'`])",
+      "begin": "\\s*\\b(class|className)\\b\\s*(=)\\s*({)?\\s*([\"'])",
       "beginCaptures": {
         "1": {
           "name": "entity.other.attribute-name.tailwindcss"
@@ -312,7 +313,7 @@
           "name": "punctuation.definition.block.tailwindcss"
         }
       },
-      "match": "\\s*\\b(class|className)\\b\\s*(=)\\s*({)?\\s*([\"'`])\\s*(.*?)\\s*(\\4)(?:\\s*(?=\\s*}))?(})?"
+      "match": "\\s*\\b(class|className)\\b\\s*(=)\\s*({)?\\s*([\"'])\\s*(.*?)\\s*(\\4)(?:\\s*(?=\\s*}))?(})?"
     },
     "slash": {
       "captures": {
@@ -680,6 +681,89 @@
     "js-identifiers": {
       "match": "\\b[a-zA-Z_$][a-zA-Z0-9_$]*\\b",
       "name": "variable.other.tailwindcss"
+    },
+    "template-literal-class-attribute": {
+      "begin": "\\s*\\b(class|className)\\b\\s*(=)\\s*({)?\\s*(`)",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.other.attribute-name.tailwindcss"
+        },
+        "2": {
+          "name": "keyword.operator.assignment.tailwindcss"
+        },
+        "3": {
+          "patterns": [
+            { "include": "#braces" }
+          ]
+        },
+        "4": {
+          "name": "string.template.tailwindcss"
+        }
+      },
+      "end": "(`)\\s*(})?",
+      "endCaptures": {
+        "1": {
+          "name": "string.template.tailwindcss"
+        },
+        "2": {
+          "patterns": [
+            { "include": "#braces" }
+          ]
+        }
+      },
+      "patterns": [
+        { "include": "#template-literal-content" }
+      ]
+    },
+    "template-literal-content": {
+      "patterns": [
+        { "include": "#template-expression" },
+        {
+          "match": "([^`$]+|\\$(?!\\{))",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "match": "\\b([\\w-]+(?::[\\w-]+)*)\\b",
+                  "captures": {
+                    "1": {
+                      "patterns": [
+                        { "include": "#tailwindcss-class-with-variants" }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "template-expression": {
+      "begin": "\\$\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.template-expression.begin.tailwindcss"
+        }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.template-expression.end.tailwindcss"
+        }
+      },
+      "contentName": "meta.embedded.expression.tailwindcss",
+      "patterns": [
+        { "include": "#template-expression-content" }
+      ]
+    },
+    "template-expression-content": {
+      "patterns": [
+        { "include": "source.js#expression" },
+        { "include": "source.ts#expression" },
+        { "include": "source.jsx#expression" },
+        { "include": "source.tsx#expression" }
+      ]
     }
   },
   "scopeName": "source.tailwindcss"
