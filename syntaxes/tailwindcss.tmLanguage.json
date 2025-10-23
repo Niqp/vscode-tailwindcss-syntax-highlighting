@@ -7,7 +7,8 @@
     { "include": "#multiline-class-attribute" },
     { "include": "#template-literal-class-attribute" },
     { "include": "#cva-function-call" },
-    { "include": "#cn-function-call" }
+    { "include": "#cn-function-call" },
+    { "include": "#tv-function-call" }
   ],
   "repository": {
     "braces": {
@@ -534,6 +535,38 @@
         { "include": "#commas" }
       ]
     },
+    "tv-function-call": {
+      "begin": "\\b(tv)\\s*(\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.tailwindcss"
+        },
+        "2": {
+          "name": "punctuation.section.function.begin.bracket.round.tailwindcss"
+        }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.function.end.bracket.round.tailwindcss"
+        }
+      },
+      "contentName": "meta.function-call.arguments.tv.tailwindcss",
+      "patterns": [
+        { "include": "#tv-function-content" }
+      ]
+    },
+    "tv-function-content": {
+      "patterns": [
+        { "include": "#tailwind-string-literal" },
+        { "include": "#nested-parens-in-tv" },
+        { "include": "#object-literal-in-tv" },
+        { "include": "#array-literal-in-tv" },
+        { "include": "#js-operators" },
+        { "include": "#js-identifiers" },
+        { "include": "#commas" }
+      ]
+    },
     "cva-function-content": {
       "patterns": [
         { "include": "#tailwind-string-literal" },
@@ -672,6 +705,57 @@
       },
       "patterns": [
         { "include": "#cva-function-content" }
+      ]
+    },
+    "nested-parens-in-tv": {
+      "begin": "\\(",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.parens.begin.tailwindcss"
+        }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.parens.end.tailwindcss"
+        }
+      },
+      "patterns": [
+        { "include": "#tv-function-content" }
+      ]
+    },
+    "object-literal-in-tv": {
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.tailwindcss"
+        }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.tailwindcss"
+        }
+      },
+      "patterns": [
+        { "include": "#tv-function-content" }
+      ]
+    },
+    "array-literal-in-tv": {
+      "begin": "\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.array.tailwindcss"
+        }
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.array.tailwindcss"
+        }
+      },
+      "patterns": [
+        { "include": "#tv-function-content" }
       ]
     },
     "js-operators": {
